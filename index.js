@@ -5,14 +5,19 @@ const assert = require('assert');
  * @return {number[][]}
  */
 const merge = function (intervals) {
-    const result = [];
-
-
+    console.log(intervals)
+    const result = [intervals[0]];
+    for (let i = 1; i < intervals.length; i++) {
+        const [lastF, lastS] = result[result.length - 1];
+        const [currF, currS] = intervals[i];
+        if(currF < lastS) {
+            result[i-1][1] = currS
+        }else {
+            result.push(intervals[i])
+        }
+    }
     return result;
 };
-
-
-
 
 
 function testMerge() {
@@ -25,7 +30,6 @@ function testMerge() {
     assert.deepStrictEqual(merge([[1,2]]), [[1,2]], "Test Case 7 Failed (Single)");
     assert.deepStrictEqual(merge([[1,2],[3,4]]), [[1,2],[3,4]], "Test Case 8 Failed (No Overlap)");
     assert.deepStrictEqual(merge([[1,5],[2,3],[4,6]]), [[1,6]], "Test Case 9 Failed (Multiple Merges)");
-
 
 
     console.log("All test cases passed!");

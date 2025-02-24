@@ -6,23 +6,28 @@
  * @return {boolean}
  */
 const validPath = function (n, edges, source, destination) {
-    const vis = new Set();
 
     const g = Array.from({length: n}, () => []);
+
     for (const [u, v] of edges) {
         g[u].push(v);
         g[v].push(u);
     }
+    console.log(edges);
 
-    const dfs = i => {
+    const visited = new Set();
+
+    const dfs = (i) => {
         if (i === destination) {
             return true;
         }
-        if (vis.has(i)) {
+        if (visited.has(i)) {
             return false;
         }
-        vis.add(i);
-        return g[i].some(dfs)
+        visited.add(i);
+        return g[i].some((x) => {
+            return dfs(x);
+        });
     }
 
     return dfs(source)

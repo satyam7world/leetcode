@@ -10,7 +10,6 @@ const validPath = function (n, edges, source, destination) {
 
     const g = Array.from({length: n}, () => []);
     for (const [u, v] of edges) {
-        // console.log(u, v)
         g[u].push(v);
         g[v].push(u);
     }
@@ -26,8 +25,7 @@ const validPath = function (n, edges, source, destination) {
         return g[i].some(dfs)
     }
 
-    console.log(edges)
-    console.log(g)
+    return dfs(source)
 };
 
 console.log(validPath(3, [[0, 1], [1, 2], [2, 0]], 0, 2))

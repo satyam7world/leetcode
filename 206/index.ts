@@ -13,17 +13,17 @@ class ListNode {
 
 // Function to reverse a linked list
 function reverseList(head: ListNode | null): ListNode | null {
-    let prev: ListNode | null = null;
-    let current: ListNode | null = head;
+    let prev = null
+    let current = head;
 
     while (current !== null) {
-        const next: ListNode | null = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
+        const x = current.next
+        current.next = prev
+        prev = current
+        current = x
     }
 
-    return prev;
+    return prev
 }
 
 // Helper function: convert array to linked list
